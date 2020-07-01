@@ -4,29 +4,47 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
+import { AppLoading } from 'expo';
+import { NavigationContainer } from '@react-navigation/native';
 
-import productsReducer from "./store/reducers/products";
-import ShopNavigator from "./navigation/ShopNavigator";
+import * as Font from 'expo-font';
+import productsReducer from './store/reducers/products';
+import ShopNavigator from './navigation/ShopNavigator';
 import ProductsOverviewScreen from './screens/shop/ProductsOverviewScreen';
 
 const rootReducer = combineReducers({
-  products: productsReducer
+  products: productsReducer,
 });
 
 const store = createStore(rootReducer);
 
-
-import { NavigationContainer } from "@react-navigation/native";
+const fetchFonts = () => {
+  return Font.loadAsync({
+    'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+  });
+};
 
 // const ProductsStack = createStackNavigator();
 
-
 export default function App() {
+  const [fontLoaded, setFontLoaded] = React.useState(false);
+
+  if (!fontLoaded) {
+    return (
+      <AppLoading
+        startAsync={fetchFonts}
+        onFinish={() => {
+          setFontLoaded(true);
+        }}
+      />
+    );
+  }
   return (
     <Provider store={store}>
       <NavigationContainer>
         <ShopNavigator />
-      </NavigationContainer>      
+      </NavigationContainer>
     </Provider>
   );
 }
@@ -39,4 +57,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-

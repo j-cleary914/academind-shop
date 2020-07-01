@@ -1,4 +1,4 @@
 import React from 'react';
-import {} from "react-native";
+import {} from 'react-native';
 
-const str = "hi"
+const str = 'hi';

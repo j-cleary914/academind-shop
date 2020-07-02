@@ -10,11 +10,22 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import * as Font from 'expo-font';
 import productsReducer from './store/reducers/products';
 import cartReducer from './store/reducers/cart';
+import ordersReducer from './store/reducers/orders';
 import ShopNavigator from './navigation/ShopNavigator';
+
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { far } from '@fortawesome/pro-regular-svg-icons';
+import { fal } from '@fortawesome/pro-light-svg-icons';
+import { fas } from '@fortawesome/pro-solid-svg-icons';
+import { fad } from '@fortawesome/pro-duotone-svg-icons';
+
+library.add(fas, fab, far, fal, fad);
 
 const rootReducer = combineReducers({
   products: productsReducer,
   cart: cartReducer,
+  orders: ordersReducer,
 });
 
 const store = createStore(rootReducer, composeWithDevTools());

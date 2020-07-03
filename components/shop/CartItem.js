@@ -6,23 +6,25 @@ const CartItem = (props) => {
   return (
     <View style={styles.cartItem}>
       <View style={styles.itemData}>
-        <Text style={styles.quantity}>{props.quantity}</Text>
+        <Text style={styles.quantity}>{props.quantity} </Text>
         <Text style={styles.mainText}>{props.title}</Text>
       </View>
       <View style={styles.itemData}>
         <Text style={styles.mainText}>${props.amount.toFixed(2)}</Text>
-        <TouchableOpacity
-          onPress={() => {
-            console.log('니 오빠는 쓸애기');
-            props.onRemove();
-          }}
-        >
-          <FontAwesomeIcon
-            icon={['far', 'trash']}
-            style={{ color: 'red', paddingHorizontal: 20 }}
-            size={28}
-          />
-        </TouchableOpacity>
+        {props.deletable && (
+          <TouchableOpacity
+            onPress={() => {
+              console.log('니 오빠는 쓸애기');
+              props.onRemove();
+            }}
+          >
+            <FontAwesomeIcon
+              icon={['far', 'trash']}
+              style={{ color: 'red', paddingHorizontal: 20 }}
+              size={28}
+            />
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );

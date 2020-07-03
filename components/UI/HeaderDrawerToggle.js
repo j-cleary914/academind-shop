@@ -6,19 +6,15 @@ import Colors from '../../constants/Colors';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
-const CustomHeaderButton = (props) => {
+const HeaderDrawToggle = () => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate('CartScreen');
+        navigation.toggleDrawer();
       }}
     >
-      <FontAwesomeIcon
-        icon={['fal', 'shopping-cart']}
-        style={styles.icon}
-        size={28}
-      />
+      <FontAwesomeIcon icon={['fas', 'bars']} style={styles.icon} size={28} />
     </TouchableOpacity>
   );
 };
@@ -32,4 +28,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CustomHeaderButton;
+export default HeaderDrawToggle;
